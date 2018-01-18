@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: neo-privnet
+  name: neo-privnet
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: neo-node1
+    port: 20333
+    targetPort: 20333
+  - name: neo-node2
+    port: 20334
+    targetPort: 20334
+  - name: neo-node3
+    port: 20335
+    targetPort: 20335
+  - name: neo-node4
+    port: 20336
+    targetPort: 20336
+  - name: neo-rpc1
+    port: 30333
+    targetPort: 30333
+  - name: neo-rpc2
+    port: 30334
+    targetPort: 30334
+  - name: neo-rpc3
+    port: 30335
+    targetPort: 30335
+  - name: neo-rpc4
+    port: 30336
+    targetPort: 30336
+  selector:
+    run: neo-privnet
+  sessionAffinity: None
+  type: LoadBalancer
+

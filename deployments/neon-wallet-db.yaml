@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: neon-wallet-db
+  name: neon-wallet-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: neon-wallet-db
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: neon-wallet-db
+    spec:
+      containers:
+      - env:
+        - name: NEOIP
+          value: [NEOEXTERNALIP]
+        image: slipoh/neon-wallet-db
+        imagePullPolicy: IfNotPresent
+        name: neon-wallet-db
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File

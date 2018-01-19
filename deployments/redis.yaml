@@ -2,14 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    run: neon-wallet-db
-  name: neon-wallet-db
+    run: redis
+  name: redis
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: neon-wallet-db
+      run: redis
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,19 +19,12 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        run: neon-wallet-db
+        run: redis
     spec:
       containers:
-      - env:
-        - name: NEOIP
-          value: 35.192.230.39
-        - name: MONGOURL
-          value: mongo:27017
-        - name: REDISTOGO_URL
-          value: redis://redis:6379
-        image: slipoh/neon-wallet-db
+      - image: redis:latest
         imagePullPolicy: IfNotPresent
-        name: neon-wallet-db
+        name: redis
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File

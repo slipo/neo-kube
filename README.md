@@ -42,6 +42,10 @@ Edit `deployments/neon-wallet-db.yaml` and change `[NEOEXTERNALIP]` to the exter
 Run
 
 ```
+kubectl apply -f deployments/mongo.yaml
+kubectl apply -f services/mongo.yaml
+kubectl apply -f deployments/redis.yaml
+kubectl apply -f services/redis.yaml
 kubectl apply -f deployments/neon-wallet-db.yaml
 kubectl apply -f services/neon-wallet-db.yaml
 ```

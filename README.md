@@ -29,7 +29,7 @@ kubectl apply -f services/neo-privnet.yaml
 
 This exposes the private network to the Internet exposing port ranges 20333-20336 and 30333-30336. Run `kubectl get services` to get the external IP. It will say "pending" for some time while the load balancer is brought up. Wait for it. You need that IP.
 
-### 3. Deploy light wallet client
+### 3. Deploy light wallet client database
 
 For some usecases a light wallet client is required. For example if you need a dApp webpage to display the user's balance.
 

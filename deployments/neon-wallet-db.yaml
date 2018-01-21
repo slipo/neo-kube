@@ -23,13 +23,23 @@ spec:
     spec:
       containers:
       - env:
-        - name: NEOIP
-          value: 35.192.230.39
         - name: MONGOURL
           value: mongo:27017
+        - name: MONGOPASS
+          value: neo
+        - name: MONGOUSER
+          value: gas
+        - name: MONGOAPP
+          value: test
         - name: REDISTOGO_URL
           value: redis://redis:6379
-        image: slipoh/neon-wallet-db
+        - name: PYTHONUNBUFFERED
+          value: "0"
+        - name: NET
+          value: private
+        - name: PRIVNET_SEEDS
+          value: http://[NEOEXTERNALIP]:30333,http://[NEOEXTERNALIP]:30334,http://[NEOEXTERNALIP]:30335,http://[NEOEXTERNALIP]:30336
+        image: slipoh/neon-wallet-db:latest
         imagePullPolicy: IfNotPresent
         name: neon-wallet-db
         resources: {}

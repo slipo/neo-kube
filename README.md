@@ -33,9 +33,28 @@ This exposes the private network to the Internet exposing port ranges 20333-2033
 
 For some usecases a light wallet client is required. For example if you need a dApp webpage to display the user's balance.
 
+#### neo-scan
+
+[neo-scan](https://github.com/CityOfZion/neo-scan) is the recommended option.
+
+Edit `deployments/neo-scan.yaml` and change `[NEOEXTERNALIP]` to the external IP you got in step 2.
+
+Run
+
+```
+kubectl apply -f deployments/postgres.yaml
+kubectl apply -f services/postgres.yaml
+kubectl apply -f deployments/neo-scan.yaml
+kubectl apply -f services/neo-scan.yaml
+```
+
+Run `kubectl get services` to get the IP for neo-scan. It will say "pending" for some time while the load balancer is brought up. When done, port 4000 will be open to the Internet.
+
+Visit `http://[NEO-SCAN-IP]:4000/` to verify everything working. If it's not showing right away check the neo-scan pod's logs. It can take a little while to start up.
+
 #### neon-wallet-db
 
-The current option we have for this is [neon-wallet-db](https://github.com/CityOfZion/neon-wallet-db) (neoscan on the way).
+[neon-wallet-db](https://github.com/CityOfZion/neon-wallet-db) is the older light wallet database option.
 
 Edit `deployments/neon-wallet-db.yaml` and change `[NEOEXTERNALIP]` to the external IP you got in step 2.
 
@@ -53,10 +72,6 @@ kubectl apply -f services/neon-wallet-db.yaml
 Run `kubectl get services` to get the IP for neon-wallet-db. It will say "pending" for some time while the load balancer is brought up. When done, port 5000 will be open to the Internet.
 
 Visit `http://[NEONDB-IP]:5000/v2/network/nodes` to verify everything working. It will take neon-wallet-db a bit of time to index the preloaded blocks in the neo-privnet-with-gas image we used in step 2.
-
-#### neoscan
-
-_Coming soon_
 
 ### 4 Profit
 

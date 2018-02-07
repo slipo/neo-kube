@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: neo-scan
+  name: neo-scan
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: neo-scan
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: neo-scan
+    spec:
+      containers:
+      - env:
+        - name: NEO_SEED_1
+          value: http://35.193.111.120:30333
+        - name: NEO_SEED_2
+          value: http://35.193.111.120:30334
+        - name: NEO_SEED_3
+          value: http://35.193.111.120:30335
+        - name: NEO_SEED_4
+          value: http://35.193.111.120:30336
+        image: slipoh/neo-scan:latest
+        imagePullPolicy: IfNotPresent
+        name: neo-scan
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File

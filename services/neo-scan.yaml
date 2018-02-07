@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: neo-scan
+  name: neo-scan
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: neo-scan
+    port: 4000
+    targetPort: 4000
+  selector:
+    run: neo-scan
+  sessionAffinity: None
+  type: LoadBalancer
+

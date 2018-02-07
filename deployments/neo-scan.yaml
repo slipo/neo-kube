@@ -24,13 +24,13 @@ spec:
       containers:
       - env:
         - name: NEO_SEED_1
-          value: http://35.193.111.120:30333
+          value: http://[NEOEXTERNALIP]:30333
         - name: NEO_SEED_2
-          value: http://35.193.111.120:30334
+          value: http://[NEOEXTERNALIP]:30334
         - name: NEO_SEED_3
-          value: http://35.193.111.120:30335
+          value: http://[NEOEXTERNALIP]:30335
         - name: NEO_SEED_4
-          value: http://35.193.111.120:30336
+          value: http://[NEOEXTERNALIP]:30336
         image: slipoh/neo-scan:latest
         imagePullPolicy: IfNotPresent
         name: neo-scan

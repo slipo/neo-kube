@@ -50,7 +50,7 @@ kubectl apply -f services/neo-scan.yaml
 
 Run `kubectl get services` to get the IP for neo-scan. It will say "pending" for some time while the load balancer is brought up. When done, port 4000 will be open to the Internet.
 
-Visit `http://[NEO-SCAN-IP]:4000/` to verify everything working. If it's not showing right away check the neo-scan pod's logs. It can take a little while to start up.
+Visit `http://[NEO-SCAN-IP]:4000/` to verify everything working. If it's not showing right away, check the neo-scan pod's logs. It can take a little while to start up.
 
 #### neon-wallet-db
 
